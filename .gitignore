@@ -6,7 +6,6 @@ karma.conf.js
 node_modules
 package-lock.json
 package.json
-src/
 tsconfig.app.json
 tsconfig.json
 tsconfig.spec.json
