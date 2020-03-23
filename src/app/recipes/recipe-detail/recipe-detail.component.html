@@ -1,16 +1,22 @@
 <div class="row">
     <div class="col-xs-12">
-        <img src="" alt="" class="img-responsive">
+        <img 
+        [src]="recipe.imagePath" 
+        alt="{{ recipe.name }}" 
+        class="img-responsive"
+        style="max-height: 300px">
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h1>Nazwa Przepisu</h1>
+        <h1>{{ recipe.name }}</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <div class="btn-group">
+        <div 
+        class="btn-group"
+        appDropdown>
             <button 
             type="button" 
             class="btn btn-primary dropdown-toggle">
@@ -25,11 +31,13 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        Sposób przygotowania
+        {{ recipe.description }}
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        Składniki
+        <ul class="list-group">
+            {{ recipe.ingredients }}
+        </ul> 
     </div>
 </div>

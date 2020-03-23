@@ -7,6 +7,10 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
+import { MenuCreatorComponent } from './recipes/menu-creator/menu-creator.component';
+import { OptionMenuComponent } from './recipes/menu-creator/option-menu/option-menu.component';
+import { CalendarMenuComponent } from './recipes/menu-creator/calendar-menu/calendar-menu.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
     RecipesComponent,
     RecipeListComponent,
     RecipeDetailComponent,
-    RecipeItemComponent
+    RecipeItemComponent,
+    MenuCreatorComponent,
+    OptionMenuComponent,
+    CalendarMenuComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule
