@@ -23,8 +23,8 @@
                 Zarządzaj przepisem <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-                <li><a href="#">Edytuj przepis</a></li>
-                <li><a href="#">Usuń przepis</a></li>
+                <li><a style="cursor: pointer;" (click)="onEditRecipe()">Edytuj przepis</a></li>
+                <li><a style="cursor: pointer;">Usuń przepis</a></li>
             </ul>
         </div>
     </div>
@@ -34,6 +34,7 @@
         {{ recipe.description }}
     </div>
 </div>
+<hr>
 <div class="row">
     <div class="col-xs-12">
         <ul class="list-group">

@@ -11,6 +11,9 @@ import { MenuCreatorComponent } from './recipes/menu-creator/menu-creator.compon
 import { OptionMenuComponent } from './recipes/menu-creator/option-menu/option-menu.component';
 import { CalendarMenuComponent } from './recipes/menu-creator/calendar-menu/calendar-menu.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { AppRoutingModule } from './app-routing.module';
+import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +26,13 @@ import { DropdownDirective } from './shared/dropdown.directive';
     MenuCreatorComponent,
     OptionMenuComponent,
     CalendarMenuComponent,
-    DropdownDirective
+    DropdownDirective,
+    RecipeStartComponent,
+    RecipeEditComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
