@@ -1,23 +1,40 @@
 <div class="row">
-    <div class="col-xs-1 vertical">
-        Poniedziałek
-    </div>
-    <div class="col-xs-1 vertical">
-        Wtorek
-    </div>
-    <div class="col-xs-1 vertical">
-        Środa
-    </div>
-    <div class="col-xs-1 vertical">
-        Czwartek
-    </div>
-    <div class="col-xs-1 vertical">
-        Piątek
-    </div>
-    <div class="col-xs-1 vertical">
-        Sobota
-    </div>
-    <div class="col-xs-1 vertical">
-        Niedziela
+    <div *ngFor="let day of days"
+     class="col-xs-2 list-group-item list-group-item-heading ">
+        <h4>{{ day.date }}</h4>
+        <div class="list-group-item">
+            <p>Śniadanie</p>
+            <p>
+                <span class ="pull-left">
+                    <img 
+                    [src]="day.breakfast.imagePath" 
+                    alt= "{{day.breakfast.name}}" 
+                    class="img-responsive" 
+                    style="max-height:80px">
+                </span>
+                {{ day.breakfast.name }}</p>
+                <hr>
+            <p>Obiad</p>
+            <p>
+                <span class ="pull-left">
+                    <img 
+                    [src]="day.dinner.imagePath" 
+                    alt= "{{day.dinner.name}}" 
+                    class="img-responsive" 
+                    style="max-height:80px">
+                </span>
+                {{ day.dinner.name }}</p>
+                <hr>
+            <p>Kolacja</p>
+            <p>
+                <span class ="pull-left">
+                    <img 
+                    [src]="day.supper.imagePath" 
+                    alt= "{{day.supper.name}}" 
+                    class="img-responsive" 
+                    style="max-height:80px">
+                </span>
+                {{ day.supper.name }}</p>
+        </div>
     </div>
 </div>

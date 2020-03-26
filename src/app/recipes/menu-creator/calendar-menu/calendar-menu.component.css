@@ -1,3 +1,6 @@
-.vertical { 
-    border-left: 1px solid black; 
-} 
+.list-group-item {
+    margin-right: 5px;
+    border-radius: 4px;
+
+}
+

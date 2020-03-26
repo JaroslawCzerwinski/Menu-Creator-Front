@@ -14,6 +14,8 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
+import { DaysService } from './recipes/menu-creator/calendar-menu/days.service';
+import { RecipeService } from './recipes/recipe.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    DaysService,
+    RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
