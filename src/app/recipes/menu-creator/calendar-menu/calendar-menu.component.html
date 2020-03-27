@@ -1,40 +1,30 @@
 <div class="row">
-    <div *ngFor="let day of days"
-     class="col-xs-2 list-group-item list-group-item-heading ">
-        <h4>{{ day.date }}</h4>
-        <div class="list-group-item">
-            <p>Śniadanie</p>
-            <p>
-                <span class ="pull-left">
-                    <img 
-                    [src]="day.breakfast.imagePath" 
-                    alt= "{{day.breakfast.name}}" 
-                    class="img-responsive" 
-                    style="max-height:80px">
-                </span>
-                {{ day.breakfast.name }}</p>
-                <hr>
-            <p>Obiad</p>
-            <p>
-                <span class ="pull-left">
-                    <img 
-                    [src]="day.dinner.imagePath" 
-                    alt= "{{day.dinner.name}}" 
-                    class="img-responsive" 
-                    style="max-height:80px">
-                </span>
-                {{ day.dinner.name }}</p>
-                <hr>
-            <p>Kolacja</p>
-            <p>
-                <span class ="pull-left">
-                    <img 
-                    [src]="day.supper.imagePath" 
-                    alt= "{{day.supper.name}}" 
-                    class="img-responsive" 
-                    style="max-height:80px">
-                </span>
-                {{ day.supper.name }}</p>
+    <div *ngFor="let day of days" class="col-xs-2 list-group-item list-group-item-heading">
+        <div class="day-conteiner">
+            <div class="day-header">{{ day.date }}</div>
+            <div class="meal-conteiner">
+                <p>Śniadanie</p>
+                <div>
+                    <img [src]="day.breakfast.imagePath" alt="{{day.breakfast.name}}" class="img-responsive">
+                   
+                </div> 
+                <div>
+                    <button class="btn btn-danger">x</button>
+                </div>
+               <p>
+                {{ day.breakfast.name }}
+               </p> 
+            </div>
+            <div class="meal-conteiner">
+                <p>Obiad</p>
+                <img [src]="day.dinner.imagePath" alt="{{day.dinner.name}}" class="img-responsive">
+                {{ day.dinner.name }}
+            </div>
+            <div class="meal-conteiner">
+                <p>Kolacja</p>
+                <img [src]="day.supper.imagePath" alt="{{day.supper.name}}" class="img-responsive">
+                {{ day.supper.name }}
+            </div>
         </div>
     </div>
 </div>

@@ -5,7 +5,7 @@ export class DaysService {
 
       private days: Day[] = [
             new Day(
-                  'poniedziałek',
+                  'Poniedziałek',
                   new Recipe(
                         'Jajecznica ze szczypiorekim',
                         'Przepis na przygotowanie jajecznicy!',
@@ -23,7 +23,7 @@ export class DaysService {
                         'składniki do kolacji')
             ),
             new Day(
-                  'wtorek',
+                  'Wtorek',
                   new Recipe(
                         'Parówki',
                         'Przepis na przygotowanie jajecznicy!',
@@ -41,7 +41,7 @@ export class DaysService {
                         'składniki do kolacji')
             ),
             new Day(
-                  'środa',
+                  'Środa',
                   new Recipe(
                         'Jajecznica ze szczypiorekim',
                         'Przepis na przygotowanie jajecznicy!',
@@ -77,7 +77,7 @@ export class DaysService {
                         'składniki do kolacji')
             ),
             new Day(
-                  'piątek',
+                  'Piątek',
                   new Recipe(
                         'Parówki',
                         'Przepis na przygotowanie jajecznicy!',

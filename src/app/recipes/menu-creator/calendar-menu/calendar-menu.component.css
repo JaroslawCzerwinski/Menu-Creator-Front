@@ -1,6 +1,36 @@
 .list-group-item {
     margin-right: 5px;
     border-radius: 4px;
-
+    padding: 5px;
+    width: 170px;
+    background: #e7e7e7;
+}
+.img-responsive{
+    max-width: 160px;
+    max-height: 70px;
 }
 
+.day-conteiner{
+    height: 490px;
+    width: 160px;
+}
+
+.meal-conteiner{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 160px;
+    height: 150px;
+    margin-top: 5px;
+    text-align: center;
+    font-size: small;
+    background: white;
+}
+
+
+.day-header{
+    font-size: medium;
+    text-align: center;
+    background: #e7e7e7;
+    color: #555;
+}
