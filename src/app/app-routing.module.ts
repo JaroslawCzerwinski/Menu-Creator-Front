@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { RecipesComponent } from './recipes/recipes.component';
@@ -15,7 +15,10 @@ const appRoutes: Routes = [
         { path: ':id', component: RecipeDetailComponent },
         {path: ':id/edit', component: RecipeEditComponent}  
     ] },
-    { path: 'menu-creator', component: MenuCreatorComponent },
+    { path: 'menu-creator', component: MenuCreatorComponent, children:[
+        {path: ':id', component: RecipeDetailComponent},
+        {path: ':id/edit', component: RecipeEditComponent}  
+    ] },
 ];
 
 @NgModule({

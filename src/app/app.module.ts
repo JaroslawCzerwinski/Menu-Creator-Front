@@ -16,6 +16,9 @@ import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.compon
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { DaysService } from './recipes/menu-creator/calendar-menu/days.service';
 import { RecipeService } from './recipes/recipe.service';
+import { FooterComponent } from './footer/footer.component';
+import { EmptyMealComponent } from './recipes/menu-creator/empty-meal/empty-meal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,11 +33,16 @@ import { RecipeService } from './recipes/recipe.service';
     CalendarMenuComponent,
     DropdownDirective,
     RecipeStartComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    FooterComponent,
+    EmptyMealComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    
   ],
   providers: [
     DaysService,

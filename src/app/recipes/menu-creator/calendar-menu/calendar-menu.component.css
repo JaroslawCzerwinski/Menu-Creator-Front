@@ -7,12 +7,16 @@
 }
 .img-responsive{
     max-width: 160px;
-    max-height: 70px;
+    max-height: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .day-conteiner{
     height: 490px;
     width: 160px;
+   
 }
 
 .meal-conteiner{
@@ -22,7 +26,6 @@
     width: 160px;
     height: 150px;
     margin-top: 5px;
-    text-align: center;
     font-size: small;
     background: white;
 }
@@ -33,4 +36,17 @@
     text-align: center;
     background: #e7e7e7;
     color: #555;
+}
+
+.meal-header{
+    width: 100%;
+    display: inline-block;
+    font-size: small;
+}
+
+.left{
+    float: left;
+}
+.right{
+    float: right;
 }

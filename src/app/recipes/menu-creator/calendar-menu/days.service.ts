@@ -1,98 +1,44 @@
 import { Day } from "./day.model";
 import { Recipe } from "../../recipe.model";
+import { RecipeService } from "../../recipe.service";
+import { Injectable } from "@angular/core";
 
+@Injectable()
 export class DaysService {
+
+      constructor(private recipeService: RecipeService){
+      }
 
       private days: Day[] = [
             new Day(
                   'Poniedziałek',
-                  new Recipe(
-                        'Jajecznica ze szczypiorekim',
-                        'Przepis na przygotowanie jajecznicy!',
-                        'https://www.mniammniam.com/obrazki_mobile/jajecznica_na_sloninie_mobile.jpg',
-                        'Składniki jajecznicy'),
-                  new Recipe(
-                        'Ryba z frytkami',
-                        'Przepis na przygotowanie ryby z frytkami!',
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQNj3pbfQxUYj3qHG98BdqbfVwnIJ9Ja7o4UiUdvOO5662rZFc',
-                        'Składniki ryby z frytkami'),
-                  new Recipe(
-                        'Kanapki z dzemem',
-                        'Przepis na dzem!',
-                        'https://www.mojegotowanie.pl/media/cache/default_view/uploads/media/default/0001/57/deb8c54dae90038de94f14c4cc031b8202b90fb5.jpeg',
-                        'składniki do kolacji')
+                  this.recipeService.getRecipe(0),
+                  null,
+                  this.recipeService.getRecipe(1),
             ),
             new Day(
                   'Wtorek',
-                  new Recipe(
-                        'Parówki',
-                        'Przepis na przygotowanie jajecznicy!',
-                        'https://www.mojegotowanie.pl/media/cache/default_view/uploads/media/default/0001/57/deb8c54dae90038de94f14c4cc031b8202b90fb5.jpeg',
-                        'składniki do jajecznicy'),
-                  new Recipe(
-                        'Kurczak ',
-                        'Przepis na przygotowanie ryby z frytkami!',
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQNj3pbfQxUYj3qHG98BdqbfVwnIJ9Ja7o4UiUdvOO5662rZFc',
-                        'składniki do obiadu'),
-                  new Recipe(
-                        'Zapiekanki',
-                        'Przepis na dzem!',
-                        'https://www.mniammniam.com/obrazki_mobile/jajecznica_na_sloninie_mobile.jpg',
-                        'składniki do kolacji')
+                  this.recipeService.getRecipe(3),
+                  this.recipeService.getRecipe(2),
+                  null
             ),
             new Day(
                   'Środa',
-                  new Recipe(
-                        'Jajecznica ze szczypiorekim',
-                        'Przepis na przygotowanie jajecznicy!',
-                        'https://www.mniammniam.com/obrazki_mobile/jajecznica_na_sloninie_mobile.jpg',
-                        'Składniki jajecznicy'),
-                  new Recipe(
-                        'Ryba z frytkami',
-                        'Przepis na przygotowanie ryby z frytkami!',
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQNj3pbfQxUYj3qHG98BdqbfVwnIJ9Ja7o4UiUdvOO5662rZFc',
-                        'Składniki ryby z frytkami'),
-                  new Recipe(
-                        'Kanapki z dzemem',
-                        'Przepis na dzem!',
-                        'https://www.mojegotowanie.pl/media/cache/default_view/uploads/media/default/0001/57/deb8c54dae90038de94f14c4cc031b8202b90fb5.jpeg',
-                        'składniki do kolacji')
+                  this.recipeService.getRecipe(6),
+                  this.recipeService.getRecipe(7),
+                  this.recipeService.getRecipe(3),
             ),
             new Day(
                   'Czwartek',
-                  new Recipe(
-                        'Parówki',
-                        'Przepis na przygotowanie jajecznicy!',
-                        'https://www.mojegotowanie.pl/media/cache/default_view/uploads/media/default/0001/57/deb8c54dae90038de94f14c4cc031b8202b90fb5.jpeg',
-                        'składniki do jajecznicy'),
-                  new Recipe(
-                        'Kurczak ',
-                        'Przepis na przygotowanie ryby z frytkami!',
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQNj3pbfQxUYj3qHG98BdqbfVwnIJ9Ja7o4UiUdvOO5662rZFc',
-                        'składniki do obiadu'),
-                  new Recipe(
-                        'Zapiekanki',
-                        'Przepis na dzem!',
-                        'https://www.mniammniam.com/obrazki_mobile/jajecznica_na_sloninie_mobile.jpg',
-                        'składniki do kolacji')
+                  this.recipeService.getRecipe(4),
+                  this.recipeService.getRecipe(2),
+                  null
             ),
             new Day(
                   'Piątek',
-                  new Recipe(
-                        'Parówki',
-                        'Przepis na przygotowanie jajecznicy!',
-                        'https://www.mojegotowanie.pl/media/cache/default_view/uploads/media/default/0001/57/deb8c54dae90038de94f14c4cc031b8202b90fb5.jpeg',
-                        'składniki do jajecznicy'),
-                  new Recipe(
-                        'Kurczak ',
-                        'Przepis na przygotowanie ryby z frytkami!',
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQNj3pbfQxUYj3qHG98BdqbfVwnIJ9Ja7o4UiUdvOO5662rZFc',
-                        'składniki do obiadu'),
-                  new Recipe(
-                        'Zapiekanki',
-                        'Przepis na dzem!',
-                        'https://www.mniammniam.com/obrazki_mobile/jajecznica_na_sloninie_mobile.jpg',
-                        'składniki do kolacji')
+                  null,
+                  this.recipeService.getRecipe(6),
+                  null
             )
 
       ];

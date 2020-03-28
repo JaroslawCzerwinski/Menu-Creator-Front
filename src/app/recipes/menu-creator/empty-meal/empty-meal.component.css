@@ -1,0 +1,10 @@
+.centred{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.btn, .btn-success {
+    display: inline-block;
+}

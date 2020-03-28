@@ -1,30 +1,60 @@
 <div class="row">
-    <div *ngFor="let day of days" class="col-xs-2 list-group-item list-group-item-heading">
-        <div class="day-conteiner">
-            <div class="day-header">{{ day.date }}</div>
-            <div class="meal-conteiner">
-                <p>Śniadanie</p>
-                <div>
-                    <img [src]="day.breakfast.imagePath" alt="{{day.breakfast.name}}" class="img-responsive">
-                   
-                </div> 
-                <div>
-                    <button class="btn btn-danger">x</button>
+    <div *ngIf="!selectedRecipe; else sRecipe">
+        <div *ngFor="let day of days" class="col-xs-2 list-group-item list-group-item-heading">
+            <div class="day-conteiner">
+                <div class="day-header">{{ day.date }}</div>
+                <div class="meal-conteiner">
+                    <div *ngIf="day.breakfast !=null else addMeal">
+                        <div class="meal-header">
+                            <div style="float: left;">Śniadanie</div>
+                            <button class="btn btn-danger" style="float: right;">x</button>
+                        </div>
+                        <a style="cursor: pointer;" [routerLink]="[day.breakfast.id]" routerLinkActive="active" (click)="onRecipeSelect()">
+                            <img [src]="day.breakfast.imagePath" alt="{{day.breakfast.name}}" class="img-responsive">
+                        </a>
+                    </div>
+                    <ng-template #addMeal>
+                        <app-empty-meal></app-empty-meal>
+                    </ng-template>
                 </div>
-               <p>
-                {{ day.breakfast.name }}
-               </p> 
-            </div>
-            <div class="meal-conteiner">
-                <p>Obiad</p>
-                <img [src]="day.dinner.imagePath" alt="{{day.dinner.name}}" class="img-responsive">
-                {{ day.dinner.name }}
-            </div>
-            <div class="meal-conteiner">
-                <p>Kolacja</p>
-                <img [src]="day.supper.imagePath" alt="{{day.supper.name}}" class="img-responsive">
-                {{ day.supper.name }}
+                <div class="meal-conteiner">
+                    <div *ngIf="day.dinner !=null else addMeal">
+                        <div class="meal-header">
+                            <div class="left">Obiad</div>
+                            <button class="btn btn-danger right">x</button>
+                        </div>
+                        <a style="cursor: pointer;" [routerLink]="[day.dinner.id]" routerLinkActive="active" (click)="onRecipeSelect()">
+                            <img [src]="day.dinner.imagePath" alt="{{ day.dinner.name }}" class="img-responsive">
+                        </a>
+                    </div>
+                    <ng-template #addMeal>
+                        <app-empty-meal></app-empty-meal>
+                    </ng-template>
+                </div>
+
+                <div class="meal-conteiner">
+                    <div *ngIf="day.supper !=null else addMeal">
+                        <div class="meal-header">
+                            <div class="left">Kolacja</div>
+                            <button class="btn btn-danger right">x</button>
+                        </div>
+                        <a style="cursor: pointer;" [routerLink]="[day.supper.id]" routerLinkActive="active" (click)="onRecipeSelect()">
+                            <img [src]="day.supper.imagePath" alt="{{ day.supper.name }}" class="img-responsive">
+                        </a>
+                    </div>
+                    <ng-template #addMeal>
+                        <app-empty-meal></app-empty-meal>
+                    </ng-template>
+                </div>
             </div>
         </div>
     </div>
+    <ng-template #sRecipe>
+        <div class="col-md-5">
+            Tu ma wyswietlac sie dzien wybranej receptury
+        </div>
+        <div class="col-md-7">
+            <router-outlet></router-outlet>
+        </div>
+    </ng-template>
 </div>
