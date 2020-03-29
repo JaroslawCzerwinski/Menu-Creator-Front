@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { RecipeService } from '../recipe.service';
 import { Recipe } from '../recipe.model';
+import { DtataStorageService } from '../../shared/data-storage.service';
 
 @Component({
   selector: 'app-recipe-edit',
@@ -16,7 +17,8 @@ export class RecipeEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private recipeService: RecipeService,
-    private router: Router) { }
+    private router: Router,
+    private dataStorageService: DtataStorageService) { }
 
   ngOnInit() {
     this.route.params
@@ -29,24 +31,14 @@ export class RecipeEditComponent implements OnInit {
       );
   }
 
-  // zamiast zapisywac kazda wartosc lepiej zrobic to tak jak ponizej
   onSubmit() {
-    const newRecipe = new Recipe(
-      10,
-      this.recipeForm.value['name'],
-      this.recipeForm.value['description'],
-      this.recipeForm.value['imagePath'],
-      this.recipeForm.value['ingredients']);
-    console.log(newRecipe);
     if (this.editMode) {
-      this.recipeService.updateRecipe(this.id, newRecipe);
-      //this.recipeService.updateRecipe(this.id, this.recipeForm.value)
-
+      this.recipeService.updateRecipe(this.id, this.recipeForm.value)
     } else {
-      this.recipeService.addRecipe(newRecipe);
-      //this.recipeService.addRecipe(this.recipeForm.value);
+      this.recipeService.addRecipe(this.recipeForm.value);
     }
-    this.onCancel();
+    this.dataStorageService.storeRecipes();
+    this.router.navigate(['../'],{relativeTo: this.route});
   }
 
   onCancel() {

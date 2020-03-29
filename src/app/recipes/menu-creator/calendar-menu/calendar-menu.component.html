@@ -1,5 +1,4 @@
 <div class="row">
-    <div *ngIf="!selectedRecipe; else sRecipe">
         <div *ngFor="let day of days" class="col-xs-2 list-group-item list-group-item-heading">
             <div class="day-conteiner">
                 <div class="day-header">{{ day.date }}</div>
@@ -9,9 +8,7 @@
                             <div style="float: left;">Śniadanie</div>
                             <button class="btn btn-danger" style="float: right;">x</button>
                         </div>
-                        <a style="cursor: pointer;" [routerLink]="[day.breakfast.id]" routerLinkActive="active" (click)="onRecipeSelect()">
-                            <img [src]="day.breakfast.imagePath" alt="{{day.breakfast.name}}" class="img-responsive">
-                        </a>
+                            <img [src]="day.breakfast.imagePath" alt="{{day.breakfast.name}}" class="img-responsive" style="cursor: pointer">
                     </div>
                     <ng-template #addMeal>
                         <app-empty-meal></app-empty-meal>
@@ -23,9 +20,7 @@
                             <div class="left">Obiad</div>
                             <button class="btn btn-danger right">x</button>
                         </div>
-                        <a style="cursor: pointer;" [routerLink]="[day.dinner.id]" routerLinkActive="active" (click)="onRecipeSelect()">
-                            <img [src]="day.dinner.imagePath" alt="{{ day.dinner.name }}" class="img-responsive">
-                        </a>
+                            <img [src]="day.dinner.imagePath" alt="{{ day.dinner.name }}" class="img-responsive" style="cursor: pointer">
                     </div>
                     <ng-template #addMeal>
                         <app-empty-meal></app-empty-meal>
@@ -38,9 +33,7 @@
                             <div class="left">Kolacja</div>
                             <button class="btn btn-danger right">x</button>
                         </div>
-                        <a style="cursor: pointer;" [routerLink]="[day.supper.id]" routerLinkActive="active" (click)="onRecipeSelect()">
-                            <img [src]="day.supper.imagePath" alt="{{ day.supper.name }}" class="img-responsive">
-                        </a>
+                            <img [src]="day.supper.imagePath" alt="{{ day.supper.name }}" class="img-responsive" style="cursor: pointer;">
                     </div>
                     <ng-template #addMeal>
                         <app-empty-meal></app-empty-meal>
@@ -48,13 +41,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <ng-template #sRecipe>
-        <div class="col-md-5">
-            Tu ma wyswietlac sie dzien wybranej receptury
-        </div>
-        <div class="col-md-7">
-            <router-outlet></router-outlet>
-        </div>
-    </ng-template>
+
 </div>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -19,6 +20,11 @@ import { RecipeService } from './recipes/recipe.service';
 import { FooterComponent } from './footer/footer.component';
 import { EmptyMealComponent } from './recipes/menu-creator/empty-meal/empty-meal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DtataStorageService } from './shared/data-storage.service';
+import { RecipesResolverService } from './recipes/recipes-resolver.service';
+import { AuthComponent } from './auth/auth.component';
+import { AuthService } from './auth/auth.service';
+import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -35,18 +41,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RecipeStartComponent,
     RecipeEditComponent,
     FooterComponent,
-    EmptyMealComponent
+    EmptyMealComponent,
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     AppRoutingModule,
-    
+
   ],
   providers: [
     DaysService,
-    RecipeService],
+    RecipeService,
+    DtataStorageService,
+    RecipesResolverService,
+    AuthService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
