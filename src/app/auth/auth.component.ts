@@ -1,31 +1,48 @@
-import { Component } from "@angular/core";
-import { NgForm } from "@angular/forms";
-import { AuthService, AuthResponseData } from "./auth.service";
+import { Component, OnInit } from "@angular/core";
+import { NgForm, FormGroup, FormControl, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
 import { Router } from '@angular/router'
+
+import { AuthService, AuthResponseData } from "./auth.service";
 
 @Component({
         selector: 'app-auth',
         templateUrl: './auth.component.html'
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit{
 
-        isLoginMode = false;
+        isLoginMode = true;
         isLoading = false;
         error: string = null;
+        authForm: FormGroup;
 
         constructor(private authService: AuthService, private router: Router) {}
+
+        ngOnInit(){
+                this.initForm();
+        }
+
+        private initForm(){
+                let userLogin ='';
+                let userPass='';
+
+                this.authForm = new FormGroup(
+                        {
+                        'login': new FormControl(userLogin, [Validators.required, Validators.email]),
+                        'pass': new FormControl(userPass, [Validators.required, Validators.minLength(6)]),
+                });
+        }
 
         onSwitchMode() {
                 this.isLoginMode = !this.isLoginMode;
         }
 
-        onSubmit(form: NgForm) {
+        onSubmit(form: FormGroup) {
                 if (!form.valid) {
                         return;
                 }
-                const email = form.value.email;
-                const password = form.value.password;
+                const email = form.controls['login'].value;
+                const password = form.controls['pass'].value;
                 let authObs: Observable<AuthResponseData>;
 
                 this.isLoading = true;
@@ -37,7 +54,6 @@ export class AuthComponent {
                 }
                 authObs.subscribe(
                         resData => {
-                                console.log(resData);
                                 this.isLoading = false;
                                 this.router.navigate(['/recipes']);
                         },

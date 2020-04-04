@@ -4,17 +4,17 @@
             <button type="button" class="navbar-toggle" (click)="collapsed = !collapsed">
                 <span class="icon-bar" *ngFor="let iconBar of [1, 2, 3]"></span>
             </button>
-            <a routerLink="/" class="navbar-brand">Home</a>
+            <a routerLink="/menu-creator" class="navbar-brand">Home</a>
         </div>
         <div class="navbar-collapse" [class.collapse]="collapsed" (window:resize)="collapsed = true">
             <ul class="nav navbar-nav">
-                <li *ngIf="isAuthenticated" routerLinkActive="active"><a routerLink="/recipes">Przepisy</a></li>
                 <li *ngIf="isAuthenticated" routerLinkActive="active"><a routerLink="/menu-creator">Kreator Jadłospisu</a></li>
+                <li *ngIf="isAuthenticated" routerLinkActive="active"><a routerLink="/recipes">Przepisy</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!isAuthenticated; else logout"><a routerLink="/auth" >Zaloguj się</a></li>
                 <ng-template #logout>
-                    <li><a style="cursor: pointer;" (click)="onLogout()" > Wyloguj się</a></li>
+                    <li><a style="cursor: pointer;" (click)="onLogout()" > Wyloguj się: {{userEmail}}</a></li>
                 </ng-template>
             </ul>
         </div>

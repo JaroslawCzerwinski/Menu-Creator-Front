@@ -16,6 +16,7 @@ export interface AuthResponseData {
 
 @Injectable()
 export class AuthService {
+    
     user = new BehaviorSubject<User>(null);
 
 

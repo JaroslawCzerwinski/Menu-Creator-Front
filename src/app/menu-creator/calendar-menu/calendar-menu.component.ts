@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+
 import { Day } from './day.model';
 import { DaysService } from './days.service';
-import { RecipeService } from '../../recipe.service';
+import { RecipeService } from '../../recipes/recipe.service';
 
 @Component({
   selector: 'app-calendar-menu',

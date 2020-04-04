@@ -1,4 +1,5 @@
-import { Recipe } from "../../recipe.model";
+import { Recipe } from "../../recipes/recipe.model";
+
 
 export class Day {
     public date: string;
