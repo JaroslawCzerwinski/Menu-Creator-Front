@@ -55,7 +55,7 @@ export class AuthComponent implements OnInit{
                 authObs.subscribe(
                         resData => {
                                 this.isLoading = false;
-                                this.router.navigate(['/recipes']);
+                                this.router.navigate(['/menu-creator']);
                         },
                         errorMessage => {
                                 this.error = errorMessage;
