@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -15,7 +18,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
-import { DaysService } from './menu-creator/calendar-menu/days.service';
+import { DaysService } from './menu-creator/days.service';
 import { RecipeService } from './recipes/recipe.service';
 import { FooterComponent } from './footer/footer.component';
 import { EmptyMealComponent } from './menu-creator/empty-meal/empty-meal.component';
@@ -27,6 +30,9 @@ import { AuthService } from './auth/auth.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthGuard } from './auth/auth-guard';
+import { CustomDatePipe } from './menu-creator/calendar-menu/custom.datepipe';
+
+registerLocaleData(localePl, 'pl');
 
 @NgModule({
   declarations: [
@@ -45,7 +51,8 @@ import { AuthGuard } from './auth/auth-guard';
     FooterComponent,
     EmptyMealComponent,
     AuthComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    CustomDatePipe
   ],
   imports: [
     BrowserModule,
@@ -62,7 +69,8 @@ import { AuthGuard } from './auth/auth-guard';
     RecipesResolverService,
     AuthService,
     AuthGuard,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
+    { provide: LOCALE_ID, useValue: "pl" },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
   ],
 
   bootstrap: [AppComponent]

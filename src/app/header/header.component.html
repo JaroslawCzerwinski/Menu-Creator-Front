@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li *ngIf="!isAuthenticated; else logout"><a routerLink="/auth" >Zaloguj się</a></li>
                 <ng-template #logout>
-                    <li><a style="cursor: pointer;" (click)="onLogout()" > Wyloguj się: {{userEmail}}</a></li>
+                    <li><a style="cursor: pointer" (click)="onLogout()"> Wyloguj się: {{userEmail}}</a></li>
                 </ng-template>
             </ul>
         </div>

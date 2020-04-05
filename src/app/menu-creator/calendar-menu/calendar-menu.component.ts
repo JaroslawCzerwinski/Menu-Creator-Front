@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Day } from './day.model';
-import { DaysService } from './days.service';
+import { Day } from '../day.model';
+import { DaysService } from '../days.service';
 import { RecipeService } from '../../recipes/recipe.service';
 
 @Component({
@@ -15,8 +15,8 @@ export class CalendarMenuComponent implements OnInit {
   @Input() index: number;
 
 
-  constructor(private daysService : DaysService,
-              private recipeService : RecipeService ) { 
+  constructor(private daysService: DaysService,
+    private recipeService: RecipeService) {
 
   }
 
@@ -25,9 +25,14 @@ export class CalendarMenuComponent implements OnInit {
     console.log(this.days);
   }
 
-  onRecipeSelect(){
+  onRecipeSelect() {
     this.selectedRecipe = true;
   }
+  previousDays() {
 
+  }
+  nextDays() {
+
+  }
 
 }

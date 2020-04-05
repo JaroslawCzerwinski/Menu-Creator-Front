@@ -13,7 +13,7 @@ import { AuthGuard } from './auth/auth-guard';
 const appRoutes: Routes = [
     { 
         path: '', 
-        redirectTo: '/recipes', 
+        redirectTo: '/menu-creator', 
         pathMatch: 'full' 
     },
     {
