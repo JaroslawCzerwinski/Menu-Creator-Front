@@ -5,11 +5,11 @@ import { DaysService } from '../days.service';
 import { RecipeService } from '../../recipes/recipe.service';
 
 @Component({
-  selector: 'app-calendar-menu',
-  templateUrl: './calendar-menu.component.html',
-  styleUrls: ['./calendar-menu.component.css']
+  selector: 'app-days-list',
+  templateUrl: './days-list.component.html',
+  styleUrls: ['./days-list.component.css']
 })
-export class CalendarMenuComponent implements OnInit {
+export class DaysListComponent implements OnInit {
   days: Day[];
   selectedRecipe: boolean = false;
   @Input() index: number;

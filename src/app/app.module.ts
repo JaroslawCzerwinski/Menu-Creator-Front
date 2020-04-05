@@ -13,7 +13,6 @@ import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.com
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
 import { MenuCreatorComponent } from './menu-creator/menu-creator.component';
 import { OptionMenuComponent } from './menu-creator/option-menu/option-menu.component';
-import { CalendarMenuComponent } from './menu-creator/calendar-menu/calendar-menu.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './recipes/recipe-start/recipe-start.component';
@@ -30,7 +29,8 @@ import { AuthService } from './auth/auth.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthGuard } from './auth/auth-guard';
-import { CustomDatePipe } from './menu-creator/calendar-menu/custom.datepipe';
+import { CustomDatePipe } from './menu-creator/custom.datepipe';
+import { DaysListComponent } from './menu-creator/days-list/days-list.component';
 
 registerLocaleData(localePl, 'pl');
 
@@ -44,7 +44,6 @@ registerLocaleData(localePl, 'pl');
     RecipeItemComponent,
     MenuCreatorComponent,
     OptionMenuComponent,
-    CalendarMenuComponent,
     DropdownDirective,
     RecipeStartComponent,
     RecipeEditComponent,
@@ -52,7 +51,8 @@ registerLocaleData(localePl, 'pl');
     EmptyMealComponent,
     AuthComponent,
     LoadingSpinnerComponent,
-    CustomDatePipe
+    CustomDatePipe,
+    DaysListComponent
   ],
   imports: [
     BrowserModule,
