@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DaysService } from './days.service';
 
 @Component({
   selector: 'app-menu-creator',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuCreatorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private daysService: DaysService) { }
 
   ngOnInit(): void {
   }
 
+  previousDays(){
+    this.daysService.showPreviousDay();
+  }
+  nextDays(){
+    this.daysService.showNextDay();
+  }
 }

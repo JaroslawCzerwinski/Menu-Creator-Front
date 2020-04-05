@@ -14,4 +14,8 @@ export class Day {
         this.dinner = dinner;
         this.supper = supper;
     }
+
+    getDate(){
+        return this.date;
+    }
 }

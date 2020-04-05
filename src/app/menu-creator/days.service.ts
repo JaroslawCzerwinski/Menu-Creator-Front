@@ -6,28 +6,34 @@ import { Day } from "./day.model";
 @Injectable()
 export class DaysService {
 
-      startDate: Date = new Date(new Date().getTime());
-      dayLong: number = 86400000;
-      private days: Day[] = [];
+      private startDate: Date = new Date(new Date().getTime());
+      private dayLongInMS: number = 86400000;
+      private daysShown: Array<Day> = [];
 
       constructor(private recipeService: RecipeService) {
-                  this.initDays();
+            this.initDays();
       }
 
       initDays() {
             let day: Day;
             for (let i = 0; i < 5; i++) {
-                  day = new Day(new Date(this.startDate.getTime() + this.dayLong * i), null, null, null);
-                  this.days.push(day);
+                  day = new Day(new Date(this.startDate.getTime() + this.dayLongInMS * i), null, null, null);
+                  this.daysShown.push(day);
             }
-            
       }
 
       getDays() {
-            return this.days.slice();
+            return this.daysShown.slice();
       }
 
-      getDay(index: number) {
-            return this.days[index];
+      showNextDay() {
+            const tempDate = new Date((this.daysShown[this.daysShown.length - 1]).getDate().getTime() + this.dayLongInMS);
+            this.daysShown.shift();
+            this.daysShown.push(new Day(tempDate, null, null, null));
+      }
+      showPreviousDay() {
+            const tempDate = new Date((this.daysShown[0]).getDate().getTime() - this.dayLongInMS);
+            this.daysShown.pop();
+            this.daysShown.unshift(new Day(tempDate, null, null, null));
       }
 }

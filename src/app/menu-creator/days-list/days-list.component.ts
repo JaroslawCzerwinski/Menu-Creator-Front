@@ -11,9 +11,6 @@ import { RecipeService } from '../../recipes/recipe.service';
 })
 export class DaysListComponent implements OnInit {
   days: Day[];
-  selectedRecipe: boolean = false;
-  @Input() index: number;
-
 
   constructor(private daysService: DaysService,
     private recipeService: RecipeService) {
@@ -23,16 +20,6 @@ export class DaysListComponent implements OnInit {
   ngOnInit() {
     this.days = this.daysService.getDays();
     console.log(this.days);
-  }
-
-  onRecipeSelect() {
-    this.selectedRecipe = true;
-  }
-  previousDays() {
-
-  }
-  nextDays() {
-
   }
 
 }
