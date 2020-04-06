@@ -27,10 +27,7 @@ export class DaysListComponent implements OnInit {
           this.days = days;
         }
       );
-   this.dataStorageService.loadDays().subscribe();
-
-    this.days = this.daysService.getDays();
-    console.log(this.days);
+    this.dataStorageService.loadDays().subscribe();
   }
 
 }

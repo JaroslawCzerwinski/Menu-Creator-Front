@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { tap} from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 import { RecipeService } from "../recipes/recipe.service";
 import { Recipe } from "../recipes/recipe.model";
-import { AuthService } from "../auth/auth.service";
 import { DaysService } from "../menu-creator/days.service";
 import { Day } from "../menu-creator/day.model";
 
@@ -12,6 +11,8 @@ import { Day } from "../menu-creator/day.model";
 @Injectable()
 export class DtataStorageService {
 
+    urlDays: string = 'https://menu-creator-back.firebaseio.com/days.json';
+    urlRecipes: string ='https://menu-creator-back.firebaseio.com/recipes.json';
 
     constructor(
         private http: HttpClient,
@@ -19,38 +20,39 @@ export class DtataStorageService {
         private daysService: DaysService) { }
 
     loadDays() {
-        return this.http.get<Day[]>(
-            'https://menu-creator-back.firebaseio.com/days.json',
-        ).pipe(
+        return this.http.get<Day[]>(this.urlDays).pipe(
+            map((days) => {
+                console.log(days);
+              return days.map(day => new Day(day.date, day.recipes || []));
+            }),
             tap(days => {
-                this.daysService.setDays(days);
-            })
-        );
+                console.log(days);
+              this.daysService.setDays(days);
+            }),
+          );
     }
 
     storeDays() {
         const days = this.daysService.getDays();
         this.http.put(
-            'https://menu-creator-back.firebaseio.com/days.json',
+            this.urlDays,
             days)
             .subscribe(response => {
-                console.log(response);
             });
     }
 
     storeRecipes() {
         const recipes = this.recipesService.getRecipes();
         this.http.put(
-            'https://menu-creator-back.firebaseio.com/recipes.json',
+            this.urlRecipes,
             recipes)
             .subscribe(response => {
-                console.log(response);
             });
     }
 
     loadRecipes() {
         return this.http.get<Recipe[]>(
-            'https://menu-creator-back.firebaseio.com/recipes.json',
+            this.urlRecipes,
         ).pipe(
             tap(recipes => {
                 this.recipesService.setRecipes(recipes);
