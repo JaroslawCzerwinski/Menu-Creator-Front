@@ -14,9 +14,9 @@ export class MenuCreatorComponent implements OnInit {
   }
 
   previousDays(){
-    this.daysService.showPreviousDay();
+   // this.daysService.showPreviousDay();
   }
   nextDays(){
-    this.daysService.showNextDay();
+  //  this.daysService.showNextDay();
   }
 }

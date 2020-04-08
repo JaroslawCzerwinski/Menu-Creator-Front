@@ -23,7 +23,8 @@ export class DtataStorageService {
         return this.http.get<Day[]>(this.urlDays).pipe(
             map((days) => {
                 console.log(days);
-              return days.map(day => new Day(day.date, day.recipes || []));
+              return days.map(day => {
+                  return day = new Day(new Date(day.date), day.recipes || [])});
             }),
             tap(days => {
                 console.log(days);
