@@ -8,58 +8,68 @@ import { Recipe } from "../recipes/recipe.model";
 export class DaysService {
 
       private currentDate: Date = new Date(new Date().getTime());
-      private firstDateFromServer;
-      private lastDateFromServer;
-      private startDate;
-      private endDate;
       private dayLongInMS: number = 86400000;
-      private daysShown: Array<Day> = [];
+      private daysToShow: Array<Day> = [];
+      private allDays: Array<Day> = [];
       daysChanged = new Subject<Day[]>();
 
+      initDays() {
+            let initDays: Day[] = [];
+            for (let i = 0; i < 5; i++) {
+                  initDays[i] = new Day(new Date((this.currentDate.getTime() + i * this.dayLongInMS)));
+            }
+            return initDays;
+      }
+
       getDays() {
-            return this.daysShown.slice();
+            console.log(this.daysToShow);
+            return this.daysToShow.slice();
+      }
+
+      getAllDays() {
+            return this.daysToShow.slice();
       }
 
       setDays(loadedDays: Day[]) {
-            const filledDays = this.fillEmptyDays(loadedDays);
-            this.daysShown = loadedDays;
-            this.daysChanged.next(this.daysShown.slice());
+            this.allDays = this.fillEmptyDays(loadedDays);
+            this.daysToShow = this.showFiveActualDays(this.allDays);
+            console.log(this.daysToShow);
+            this.daysChanged.next(this.daysToShow.slice());
       }
 
+      showFiveActualDays(allDays: Day[]) {
+            const currentDateIndex = allDays.findIndex(day => day.date.getDay() == this.currentDate.getDay());
+            return allDays.slice(currentDateIndex, currentDateIndex + 5);
+      }
 
       private fillEmptyDays(loadedDays: Day[]) {
-            this.firstDateFromServer = loadedDays[0].date;
-            this.lastDateFromServer = loadedDays[loadedDays.length - 1].date;
+            const additionalDays = 4;
+            const firstDateFromServer = loadedDays[0].date;
+            const lastDateFromServer = loadedDays[loadedDays.length - 1].date;
+            let startDate: Date;
+            let endDate: Date;
 
-            if (this.firstDateFromServer >= this.currentDate) {
-                  this.startDate = this.currentDate;
+            if (firstDateFromServer >= this.currentDate) {
+                  startDate = this.currentDate;
+                  loadedDays.unshift(new Day(new Date(this.currentDate)));
             } else {
-                  this.startDate = this.firstDateFromServer;
+                  startDate = firstDateFromServer;
             }
-            if (this.lastDateFromServer >= this.currentDate) {
-                  this.endDate = this.lastDateFromServer;
+            if (lastDateFromServer >= this.currentDate) {
+                  endDate = lastDateFromServer;
             } else {
-                  this.endDate = this.currentDate;
+                  endDate = this.currentDate;
             }
-
-            const daysToFill = (this.endDate.getTime() - this.startDate.getTime()) / this.dayLongInMS;
-
-            this.fillDaysBetwenStartAndEnd(loadedDays, daysToFill);
-
-
+            const daysToFill = Math.round((endDate.getTime() - startDate.getTime()) / this.dayLongInMS) + additionalDays;
+            return this.fillDaysBetwenStartAndEnd(loadedDays, daysToFill);
       }
 
-
-
-      fillDaysBetwenStartAndEnd(loadedDays: Day[], daysToFill: number) {
-            let daysFilled: Day[];
-            console.log('petla sie zaczyna');
+      private fillDaysBetwenStartAndEnd(loadedDays: Day[], daysToFill: number) {
             for (let i = 0; i < daysToFill; i++) {
-                  if (loadedDays[i] === undefined) {
+                  if (loadedDays[i] == undefined) {
                         loadedDays[i] = new Day(new Date((loadedDays[i - 1].date).getTime() + this.dayLongInMS));
                   }
-                  console.log(loadedDays);
             }
-            return daysFilled = loadedDays;
+            return loadedDays;
       }
 }

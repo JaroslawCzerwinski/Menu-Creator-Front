@@ -12,7 +12,7 @@ import { Day } from "../menu-creator/day.model";
 export class DtataStorageService {
 
     urlDays: string = 'https://menu-creator-back.firebaseio.com/days.json';
-    urlRecipes: string ='https://menu-creator-back.firebaseio.com/recipes.json';
+    urlRecipes: string = 'https://menu-creator-back.firebaseio.com/recipes.json';
 
     constructor(
         private http: HttpClient,
@@ -21,20 +21,30 @@ export class DtataStorageService {
 
     loadDays() {
         return this.http.get<Day[]>(this.urlDays).pipe(
+            map((loadeDays) => {
+                console.log(loadeDays);
+                return loadeDays = loadeDays.filter(function (days) {
+                    return days != undefined || days != null;
+                })
+            }),
             map((days) => {
-                console.log(days);
-              return days.map(day => {
-                  return day = new Day(new Date(day.date), day.recipes || [])});
+                if (days != null) {
+                    return days.map(day => {
+                        return day = new Day(new Date(day.date), day.recipes || [])
+                    });
+                } else {
+                    return days = this.daysService.initDays();
+                }
             }),
             tap(days => {
                 console.log(days);
-              this.daysService.setDays(days);
+                this.daysService.setDays(days);
             }),
-          );
+        );
     }
 
     storeDays() {
-        const days = this.daysService.getDays();
+        const days = this.daysService.getAllDays();
         this.http.put(
             this.urlDays,
             days)
