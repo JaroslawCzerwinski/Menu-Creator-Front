@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 
 import { Day } from "./day.model";
-import { Recipe } from "../recipes/recipe.model";
 
 @Injectable()
 export class DaysService {
@@ -37,7 +36,34 @@ export class DaysService {
             this.daysChanged.next(this.daysToShow.slice());
       }
 
-      showFiveActualDays(allDays: Day[]) {
+      showPreviousDay() {
+            this.daysToShow.pop();
+            const tempIndex = this.allDays.findIndex(day => { day.date.getDay() == this.daysToShow[0].getDate().getDay() });
+            if (tempIndex == -1) {
+                  this.allDays.unshift(new Day(new Date(this.daysToShow[0].getDate().getTime() - this.dayLongInMS)));
+                  this.daysToShow.unshift(this.allDays[0]);
+            } else {
+                  this.daysToShow.unshift(this.allDays[tempIndex - 1]);
+            }
+            this.daysChanged.next(this.daysToShow.slice());
+      }
+
+      showNextDay() {
+            this.daysToShow.shift();
+            const lastAllDays = this.allDays[this.allDays.length - 1].getDate();
+            const lastShowedDay = this.daysToShow[this.daysToShow.length - 1].getDate();
+      
+            if (lastAllDays == lastShowedDay) {
+                  this.allDays.push(new Day(new Date(this.daysToShow[this.daysToShow.length - 1].getDate().getTime() + this.dayLongInMS)));
+                  this.daysToShow.push(this.allDays[this.allDays.length - 1]);
+            } else {
+                  const tempIndex = this.allDays.findIndex(day => day.date.getDay() == this.daysToShow[this.daysToShow.length - 1].getDate().getDay()); 
+                  this.daysToShow.push(this.allDays[tempIndex + 1]);
+            }
+            this.daysChanged.next(this.daysToShow.slice());
+      }
+
+      private showFiveActualDays(allDays: Day[]) {
             const currentDateIndex = allDays.findIndex(day => day.date.getDay() == this.currentDate.getDay());
             return allDays.slice(currentDateIndex, currentDateIndex + 5);
       }
@@ -49,13 +75,13 @@ export class DaysService {
             let startDate: Date;
             let endDate: Date;
 
-            if (firstDateFromServer >= this.currentDate) {
+            if (firstDateFromServer.getDate() > this.currentDate.getDate()) {
                   startDate = this.currentDate;
                   loadedDays.unshift(new Day(new Date(this.currentDate)));
             } else {
                   startDate = firstDateFromServer;
             }
-            if (lastDateFromServer >= this.currentDate) {
+            if (lastDateFromServer.getDate() >= this.currentDate.getDate()) {
                   endDate = lastDateFromServer;
             } else {
                   endDate = this.currentDate;
