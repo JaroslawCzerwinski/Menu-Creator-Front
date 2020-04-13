@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-
-import { Day } from '../day.model';
-import { DaysService } from '../days.service';
-import { RecipeService } from '../../recipes/recipe.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
+
+import { DaysService } from '../days.service';
+import { Day } from '../day.model';
 import { DtataStorageService } from '../../shared/data-storage.service';
 
 @Component({
@@ -11,10 +10,11 @@ import { DtataStorageService } from '../../shared/data-storage.service';
   templateUrl: './days-list.component.html',
   styleUrls: ['./days-list.component.css']
 })
-export class DaysListComponent implements OnInit {
+export class DaysListComponent implements OnInit, OnDestroy{
 
-  days: Day[];
+  showedDays: Day[];
   subscription: Subscription;
+  
 
   constructor(
     private daysService: DaysService,
@@ -24,10 +24,14 @@ export class DaysListComponent implements OnInit {
    this.subscription = this.daysService.daysChanged
       .subscribe(
         (days: Day[]) => {
-          this.days = days;
+          this.showedDays = days;
         }
       );
     this.dataStorageService.loadDays().subscribe();
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

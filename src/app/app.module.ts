@@ -31,6 +31,9 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AuthGuard } from './auth/auth-guard';
 import { CustomDatePipe } from './menu-creator/custom.datepipe';
 import { DaysListComponent } from './menu-creator/days-list/days-list.component';
+import { MealSlotComponent } from './menu-creator/meal-slot/meal-slot.component';
+import { AddMealComponent } from './menu-creator/add-meal/add-meal.component';
+import { MealService } from './menu-creator/meal.service';
 
 registerLocaleData(localePl, 'pl');
 
@@ -52,7 +55,9 @@ registerLocaleData(localePl, 'pl');
     AuthComponent,
     LoadingSpinnerComponent,
     CustomDatePipe,
-    DaysListComponent
+    DaysListComponent,
+    MealSlotComponent,
+    AddMealComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +69,7 @@ registerLocaleData(localePl, 'pl');
   ],
   providers: [
     DaysService,
+    MealService,
     RecipeService,
     DtataStorageService,
     RecipesResolverService,

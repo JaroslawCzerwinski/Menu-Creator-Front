@@ -29,7 +29,11 @@ const appRoutes: Routes = [
     {
         path: 'menu-creator',
         component: MenuCreatorComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
+        children:[
+            { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
+
+        ]
     },
     { 
         path: 'auth', 

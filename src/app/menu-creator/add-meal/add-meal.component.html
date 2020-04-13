@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-xs-4 list-group-item list-group-item-heading">
+        <div class="day-conteiner">
+            <div class="day-header" style="font-size: small;">{{ selctedDay.date | customDate }}
+            </div>
+            <div class="meal-conteiner">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <app-meal-slot 
+                        *ngFor="let mealEl of selctedDay.recipes; 
+                        let i = index" 
+                        [recipe]="mealEl" 
+                        [index]="i">
+                        </app-meal-slot>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-8">
+        <app-recipe-list></app-recipe-list>
+    </div>
+</div>

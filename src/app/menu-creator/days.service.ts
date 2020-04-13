@@ -11,6 +11,7 @@ export class DaysService {
       private daysToShow: Array<Day> = [];
       private allDays: Array<Day> = [];
       daysChanged = new Subject<Day[]>();
+      
 
       initDays() {
             let initDays: Day[] = [];
@@ -20,7 +21,12 @@ export class DaysService {
             return initDays;
       }
 
-      getDays() {
+      getDayByDate(date: Date){
+            const index = this.daysToShow.findIndex(day =>  day.date.getDate() == date.getDate() );
+            return this.daysToShow[index];
+      }
+
+      getShowedDays() {
             console.log(this.daysToShow);
             return this.daysToShow.slice();
       }

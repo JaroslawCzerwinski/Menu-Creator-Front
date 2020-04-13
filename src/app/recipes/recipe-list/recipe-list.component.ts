@@ -5,6 +5,7 @@ import { RecipeService } from '../recipe.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { DtataStorageService } from '../../shared/data-storage.service';
+import { MealService } from '../../menu-creator/meal.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -13,22 +14,33 @@ import { DtataStorageService } from '../../shared/data-storage.service';
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
-  subscription: Subscription;
+  recipeSubscription: Subscription;
+  mealSubscription: Subscription;
+  addMode :boolean = false;
 
   constructor(private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private dataStroageService: DtataStorageService) { }
+    private dataStroageService: DtataStorageService,
+    private mealService: MealService) { }
 
   ngOnInit() {
-    this.subscription = this.recipeService.recipeChanged
-      .subscribe(
-        (recipes: Recipe[]) => {
-          this.recipes = recipes;
-        }
+    this.recipeSubscription = this.recipeService.recipeChanged
+    .subscribe(
+      (recipes: Recipe[]) => {
+        this.recipes = recipes;
+      }
       );
-    this.dataStroageService.loadRecipes().subscribe();
-    this.recipes = this.recipeService.getRecipes();
+      this.dataStroageService.loadRecipes().subscribe();
+      this.recipes = this.recipeService.getRecipes();
+
+      this.mealSubscription = this.mealService.modeChange.subscribe( 
+          (modeStatus: boolean) => {
+            this.addMode = modeStatus;
+          }//subscription to fix
+      );
+    
+    
   }
 
   onNewRecipe() {
@@ -36,6 +48,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.recipeSubscription.unsubscribe();
+    this.mealSubscription.unsubscribe();
   }
 }

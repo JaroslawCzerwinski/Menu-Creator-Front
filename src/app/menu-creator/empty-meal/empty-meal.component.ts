@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { MealService } from '../meal.service';
 
 @Component({
   selector: 'app-empty-meal',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./empty-meal.component.css']
 })
 export class EmptyMealComponent implements OnInit {
+  @Input() date: Date;
 
-  constructor() { }
+  constructor(private mealService: MealService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
+  addMeal() {
+    this.mealService.changeSelectedDay(this.date);
+    
+  }
 }

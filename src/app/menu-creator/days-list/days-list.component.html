@@ -1,46 +1,24 @@
 <div class="row">
-    <div *ngFor="let day of days" class="col-xs-2 list-group-item list-group-item-heading">
+    <div *ngFor="let day of showedDays" class="col-xs-2 list-group-item list-group-item-heading">
         <div class="day-conteiner">
-            <div class="day-header" style="font-size: small;">{{ day.date | customDate}}</div>
-            <div class="meal-conteiner">
-                <div *ngIf="day.breakfast !=null else addMeal">
-                    <div class="meal-header">
-                        <div style="float: left;">Śniadanie</div>
-                        <button class="btn btn-danger" style="float: right;">x</button>
-                    </div>
-                    <img [src]="day.breakfast.imagePath" alt="{{day.breakfast.name}}" class="img-responsive"
-                        style="cursor: pointer">
-                </div>
-                <ng-template #addMeal>
-                    <app-empty-meal></app-empty-meal>
-                </ng-template>
+            <div class="day-header" style="font-size: small;">{{ day.date | customDate}}
             </div>
             <div class="meal-conteiner">
-                <div *ngIf="day.dinner !=null else addMeal">
-                    <div class="meal-header">
-                        <div class="left">Obiad</div>
-                        <button class="btn btn-danger right">x</button>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div *ngIf="day.recipe != null; else noMeal">
+                            <app-meal-slot *ngFor="let mealEl of day.recipe; 
+                            let i = index" [recipe]="mealEl" [index]="i">
+                            </app-meal-slot>
+                            <div *ngIf="day.recipe < 5">
+                                <app-empty-meal [date]="day.date"></app-empty-meal>
+                            </div>
+                        </div>
+                        <ng-template #noMeal>
+                            <app-empty-meal [date]="day.date"></app-empty-meal>
+                        </ng-template>
                     </div>
-                    <img [src]="day.dinner.imagePath" alt="{{ day.dinner.name }}" class="img-responsive"
-                        style="cursor: pointer">
                 </div>
-                <ng-template #addMeal>
-                    <app-empty-meal></app-empty-meal>
-                </ng-template>
-            </div>
-
-            <div class="meal-conteiner">
-                <div *ngIf="day.supper !=null else addMeal">
-                    <div class="meal-header">
-                        <div class="left">Kolacja</div>
-                        <button class="btn btn-danger right">x</button>
-                    </div>
-                    <img [src]="day.supper.imagePath" alt="{{ day.supper.name }}" class="img-responsive"
-                        style="cursor: pointer;">
-                </div>
-                <ng-template #addMeal>
-                    <app-empty-meal></app-empty-meal>
-                </ng-template>
             </div>
         </div>
     </div>

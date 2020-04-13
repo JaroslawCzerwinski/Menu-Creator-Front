@@ -1,22 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DaysService } from './days.service';
+import { MealService } from './meal.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-menu-creator',
   templateUrl: './menu-creator.component.html',
   styleUrls: ['./menu-creator.component.css']
 })
-export class MenuCreatorComponent implements OnInit {
+export class MenuCreatorComponent implements OnInit, OnDestroy {
 
-  constructor(private daysService: DaysService) { }
+  selctedDay: Date;
+  subscription: Subscription;
 
-  ngOnInit(): void {
+  constructor(private daysService: DaysService,
+    private mealService: MealService) { }
+
+  ngOnInit() {
+    this.subscription = this.mealService.daysChanged
+      .subscribe(
+        (date: Date) => {
+          this.selctedDay = date;
+        }
+      );
   }
 
-  previousDays(){
+  previousDays() {
     this.daysService.showPreviousDay();
   }
-  nextDays(){
+
+  nextDays() {
     this.daysService.showNextDay();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

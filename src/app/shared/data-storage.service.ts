@@ -22,7 +22,6 @@ export class DtataStorageService {
     loadDays() {
         return this.http.get<Day[]>(this.urlDays).pipe(
             map((loadeDays) => {
-                console.log(loadeDays);
                 return loadeDays = loadeDays.filter(function (days) {
                     return days != undefined || days != null;
                 })
@@ -37,7 +36,6 @@ export class DtataStorageService {
                 }
             }),
             tap(days => {
-                console.log(days);
                 this.daysService.setDays(days);
             }),
         );
