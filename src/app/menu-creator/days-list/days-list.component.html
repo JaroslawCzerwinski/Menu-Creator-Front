@@ -6,13 +6,13 @@
             <div class="meal-conteiner">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div *ngIf="day.recipe != null; else noMeal">
-                            <app-meal-slot *ngFor="let mealEl of day.recipe; 
-                            let i = index" [recipe]="mealEl" [index]="i">
+                        <div *ngIf="day.recipes != null; else noMeal">
+                            <app-meal-slot 
+                            *ngFor="let mealEl of day.recipes; 
+                            let i = index" 
+                            [recipe]="mealEl" 
+                            [index]="i">
                             </app-meal-slot>
-                            <div *ngIf="day.recipe < 5">
-                                <app-empty-meal [date]="day.date"></app-empty-meal>
-                            </div>
                         </div>
                         <ng-template #noMeal>
                             <app-empty-meal [date]="day.date"></app-empty-meal>

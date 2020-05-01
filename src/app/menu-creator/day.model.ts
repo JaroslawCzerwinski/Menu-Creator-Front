@@ -1,7 +1,5 @@
 import { Recipe } from "../recipes/recipe.model";
 
-
-
 export class Day {
     public date: Date;
     public recipes :Recipe[]
@@ -13,5 +11,13 @@ export class Day {
 
     getDate(){
         return this.date;
+    }
+
+    getRecipe(){
+        return this.recipes;
+    }
+
+    setRecipe(recipes: Recipe[]){
+        this.recipes = recipes;
     }
 }

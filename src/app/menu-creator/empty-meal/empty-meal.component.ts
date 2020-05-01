@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MealService } from '../meal.service';
+import { MealService } from '../../shared/meal.service';
+
 
 @Component({
   selector: 'app-empty-meal',

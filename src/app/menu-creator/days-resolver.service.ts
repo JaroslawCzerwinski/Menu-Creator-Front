@@ -15,7 +15,7 @@ export class DaysResolverService implements Resolve<Day[]> {
     constructor(private dataStorageService: DtataStorageService, private daysServie: DaysService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        const days = this.daysServie.getDays();
+        const days = this.daysServie.getShowedDays();
         if(days.length === 0){
             return this.dataStorageService.loadDays();
         } else {

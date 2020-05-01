@@ -8,6 +8,7 @@ import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component
 import { RecipesResolverService } from './recipes/recipes-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { AuthGuard } from './auth/auth-guard';
+import { ModeResolverService } from './recipes/mode-resolver.service';
 
 const appRoutes: Routes = [
     { 
@@ -18,6 +19,7 @@ const appRoutes: Routes = [
     {
         path: 'recipes',
         component: RecipesComponent,
+        resolve: [ModeResolverService],
         canActivate: [AuthGuard],
         children: [
             { path: '', component: RecipeStartComponent },
@@ -29,6 +31,7 @@ const appRoutes: Routes = [
     {
         path: 'menu-creator',
         component: MenuCreatorComponent,
+        resolve: [ModeResolverService],
         canActivate: [AuthGuard],
         children:[
             { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },

@@ -5,7 +5,10 @@
     class="list-group-item clearfix">
     <div *ngIf = "addMode;"
         class="pull-left">
-        <button class="btn btn-primary" (click)="addMeal()" style="font-size: large; margin-right: 20px;">+</button>
+        <button 
+        class="btn btn-primary"
+        (click)="addMeal()" 
+        style="font-size: large; margin-right: 20px;">+</button>
     </div>
     <div class="pull-left">
         <h4 class="list-group-item-heading"> {{ recipe.name }}</h4>

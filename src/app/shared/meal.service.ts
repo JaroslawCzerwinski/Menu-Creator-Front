@@ -7,15 +7,16 @@ export class MealService {
 
     selectedDay: Date = null;
     daysChanged = new Subject<Date>();
-    private addMode = false;
-    modeChange = new Subject <boolean>();
+    addMode = false;
+    
 
     changeSelectedDay(date: Date) {
         this.selectedDay = date;
         this.daysChanged.next(this.selectedDay);
-        this.addMode = true;
-        this.modeChange.next(this.addMode); //start 
-     
+    }
+
+    getSelectedDay(){
+        return this.selectedDay;
     }
 
 }

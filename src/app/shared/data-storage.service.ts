@@ -9,7 +9,7 @@ import { Day } from "../menu-creator/day.model";
 
 
 @Injectable()
-export class DtataStorageService {
+export class DataStorageService {
 
     urlDays: string = 'https://menu-creator-back.firebaseio.com/days.json';
     urlRecipes: string = 'https://menu-creator-back.firebaseio.com/recipes.json';
@@ -21,12 +21,15 @@ export class DtataStorageService {
 
     loadDays() {
         return this.http.get<Day[]>(this.urlDays).pipe(
-            map((loadeDays) => {
-                return loadeDays = loadeDays.filter(function (days) {
+            map((days) => {
+                if (days != null) {
+                return days = days.filter(function (days) {
                     return days != undefined || days != null;
                 })
+            }
             }),
             map((days) => {
+                console.log(days);
                 if (days != null) {
                     return days.map(day => {
                         return day = new Day(new Date(day.date), day.recipes || [])

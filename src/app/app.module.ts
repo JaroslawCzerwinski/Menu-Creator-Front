@@ -22,7 +22,7 @@ import { RecipeService } from './recipes/recipe.service';
 import { FooterComponent } from './footer/footer.component';
 import { EmptyMealComponent } from './menu-creator/empty-meal/empty-meal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DtataStorageService } from './shared/data-storage.service';
+import { DataStorageService } from './shared/data-storage.service';
 import { RecipesResolverService } from './recipes/recipes-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
@@ -33,7 +33,9 @@ import { CustomDatePipe } from './menu-creator/custom.datepipe';
 import { DaysListComponent } from './menu-creator/days-list/days-list.component';
 import { MealSlotComponent } from './menu-creator/meal-slot/meal-slot.component';
 import { AddMealComponent } from './menu-creator/add-meal/add-meal.component';
-import { MealService } from './menu-creator/meal.service';
+import { MealService } from './shared/meal.service';
+import { ModeResolverService } from './recipes/mode-resolver.service';
+
 
 registerLocaleData(localePl, 'pl');
 
@@ -71,8 +73,9 @@ registerLocaleData(localePl, 'pl');
     DaysService,
     MealService,
     RecipeService,
-    DtataStorageService,
+    DataStorageService,
     RecipesResolverService,
+    ModeResolverService,
     AuthService,
     AuthGuard,
     { provide: LOCALE_ID, useValue: "pl" },

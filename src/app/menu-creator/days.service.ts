@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 
 import { Day } from "./day.model";
+import { Recipe } from "../recipes/recipe.model";
+import { MealService } from "../shared/meal.service";
 
 @Injectable()
 export class DaysService {
@@ -11,7 +13,9 @@ export class DaysService {
       private daysToShow: Array<Day> = [];
       private allDays: Array<Day> = [];
       daysChanged = new Subject<Day[]>();
-      
+
+      constructor(private mealService: MealService) { }
+
 
       initDays() {
             let initDays: Day[] = [];
@@ -21,8 +25,8 @@ export class DaysService {
             return initDays;
       }
 
-      getDayByDate(date: Date){
-            const index = this.daysToShow.findIndex(day =>  day.date.getDate() == date.getDate() );
+      getDayByDate(date: Date) {
+            const index = this.daysToShow.findIndex(day => day.date.getDate() == date.getDate());
             return this.daysToShow[index];
       }
 
@@ -32,8 +36,35 @@ export class DaysService {
       }
 
       getAllDays() {
-            return this.daysToShow.slice();
+            return this.allDays.slice();
       }
+
+      addRecipeToDay(recipe: Recipe) {
+            let selectedDay = this.getDayByDate(this.mealService.selectedDay);
+            let dayRecipes = selectedDay.getRecipe();
+            let newRecipes = [];
+          
+            if (dayRecipes == undefined) {
+                  newRecipes.push(recipe);
+            } else {
+                  newRecipes = dayRecipes;
+                  newRecipes.push(recipe);
+            }
+            selectedDay.setRecipe(newRecipes);
+            this.updateDays(selectedDay);
+      }
+
+      private updateDays(dayToChange: Day){
+            console.log(this.allDays);
+            const index = this.allDays.findIndex(day => day.date.getDate() == dayToChange.getDate().getDate());
+            this.allDays[index].setRecipe(dayToChange.recipes);
+            console.log(this.allDays);
+            this.daysChanged.next(this.daysToShow.slice());
+      }
+
+      delateRecipeFromDay(recipe: Recipe) {
+            throw new Error("Method not implemented.");
+          }
 
       setDays(loadedDays: Day[]) {
             this.allDays = this.fillEmptyDays(loadedDays);
@@ -58,12 +89,12 @@ export class DaysService {
             this.daysToShow.shift();
             const lastAllDays = this.allDays[this.allDays.length - 1].getDate();
             const lastShowedDay = this.daysToShow[this.daysToShow.length - 1].getDate();
-      
+
             if (lastAllDays == lastShowedDay) {
                   this.allDays.push(new Day(new Date(this.daysToShow[this.daysToShow.length - 1].getDate().getTime() + this.dayLongInMS)));
                   this.daysToShow.push(this.allDays[this.allDays.length - 1]);
             } else {
-                  const tempIndex = this.allDays.findIndex(day => day.date.getDay() == this.daysToShow[this.daysToShow.length - 1].getDate().getDay()); 
+                  const tempIndex = this.allDays.findIndex(day => day.date.getDay() == this.daysToShow[this.daysToShow.length - 1].getDate().getDay());
                   this.daysToShow.push(this.allDays[tempIndex + 1]);
             }
             this.daysChanged.next(this.daysToShow.slice());

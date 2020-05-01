@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Recipe } from '../../recipes/recipe.model';
+import { DaysService } from '../days.service';
 
 @Component({
   selector: 'app-meal-slot',
@@ -11,9 +12,16 @@ export class MealSlotComponent implements OnInit {
   @Input() recipe: Recipe;
   @Input() index: number;
   
-  constructor() { }
+  constructor(private daysService: DaysService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
+    console.log(this.recipe);
   }
+
+  delateMeal(){
+    this.daysService.delateRecipeFromDay(this.recipe);
+  }
+
 
 }

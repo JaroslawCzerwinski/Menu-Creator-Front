@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DaysService } from './days.service';
-import { MealService } from './meal.service';
+
 import { Subscription } from 'rxjs';
+import { MealService } from '../shared/meal.service';
 
 @Component({
   selector: 'app-menu-creator',

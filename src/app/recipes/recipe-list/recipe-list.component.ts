@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { DtataStorageService } from '../../shared/data-storage.service';
-import { MealService } from '../../menu-creator/meal.service';
+import { DataStorageService } from '../../shared/data-storage.service';
+import { MealService } from '../../shared/meal.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,32 +15,26 @@ import { MealService } from '../../menu-creator/meal.service';
 export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   recipeSubscription: Subscription;
-  mealSubscription: Subscription;
-  addMode :boolean = false;
+  addMode: boolean = false;
 
   constructor(private recipeService: RecipeService,
     private router: Router,
     private route: ActivatedRoute,
-    private dataStroageService: DtataStorageService,
-    private mealService: MealService) { }
+    private dataStroageService: DataStorageService,
+    private mealService: MealService
+    ) { }
 
   ngOnInit() {
+    this.addMode = this.mealService.addMode;
     this.recipeSubscription = this.recipeService.recipeChanged
-    .subscribe(
-      (recipes: Recipe[]) => {
-        this.recipes = recipes;
-      }
+      .subscribe(
+        (recipes: Recipe[]) => {
+          this.recipes = recipes;
+        }
       );
-      this.dataStroageService.loadRecipes().subscribe();
-      this.recipes = this.recipeService.getRecipes();
+    this.dataStroageService.loadRecipes().subscribe();
+    this.recipes = this.recipeService.getRecipes();
 
-      this.mealSubscription = this.mealService.modeChange.subscribe( 
-          (modeStatus: boolean) => {
-            this.addMode = modeStatus;
-          }//subscription to fix
-      );
-    
-    
   }
 
   onNewRecipe() {
@@ -49,6 +43,5 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.recipeSubscription.unsubscribe();
-    this.mealSubscription.unsubscribe();
   }
 }

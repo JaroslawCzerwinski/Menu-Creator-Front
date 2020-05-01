@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DtataStorageService } from '../../shared/data-storage.service';
+import { DataStorageService } from '../../shared/data-storage.service';
 
 @Component({
   selector: 'app-option-menu',
@@ -8,7 +8,7 @@ import { DtataStorageService } from '../../shared/data-storage.service';
 })
 export class OptionMenuComponent implements OnInit {
 
-  constructor(private dataStorageService: DtataStorageService ) { }
+  constructor(private dataStorageService: DataStorageService ) { }
 
   ngOnInit(): void {
   }

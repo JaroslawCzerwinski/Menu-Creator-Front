@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { DaysService } from '../days.service';
 import { Day } from '../day.model';
-import { DtataStorageService } from '../../shared/data-storage.service';
+import { DataStorageService } from '../../shared/data-storage.service';
 
 @Component({
   selector: 'app-days-list',
@@ -15,19 +15,21 @@ export class DaysListComponent implements OnInit, OnDestroy{
   showedDays: Day[];
   subscription: Subscription;
   
-
   constructor(
     private daysService: DaysService,
-    private dataStorageService: DtataStorageService) {}
+    private dataStorageService: DataStorageService) {}
 
   ngOnInit() {
    this.subscription = this.daysService.daysChanged
       .subscribe(
         (days: Day[]) => {
           this.showedDays = days;
+          console.log("dani sie zaktualizowaly");
+          console.log(this.showedDays);
         }
       );
     this.dataStorageService.loadDays().subscribe();
+   
   }
   
   ngOnDestroy() {
