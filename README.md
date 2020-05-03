@@ -1,5 +1,5 @@
 # Menu Creator - Front
 ---
 
-Jest to frontowa czesc aplikacji to tworzenia jadlospisu. Stworzona do wlasnego uzytku jak i w celu podnoszenia umiejetności. 
-W obecnej chwili Aplikacja nie jest jeszcze gotowa a cześc kodu ulegnie zmienie, ponieważ uzywałem do tej pory backendu z firebse od googla. Cześc logiki zostanie przeniesiona do moje drugiej czesci aplikacji która bedzie odpowiedzialna za backend.
+This is the front part of the application to create a menu. Created for personal use and to improve skills.
+At the moment, the application is not ready yet and some of the code will change, because I used a Google firebse backend so far. Some logic will be transferred to my second part of the application which will be responsible for the backend.
