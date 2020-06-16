@@ -1,6 +1,6 @@
 # Menu Creator - Front
 ---
-Front part of simple menu creator aplication created by Angular and Bootstrap framework.
+Front part of simple menu creator application created by Angular and Bootstrap framework.
 
 ### Table of contents
 * [General Info](#general-info)
