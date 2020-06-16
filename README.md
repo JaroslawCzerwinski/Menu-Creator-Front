@@ -25,4 +25,4 @@ Project under development state. Some of the code will change to connect request
 
 ### Sources
 ---
-Part of application have been created with course on Udemy led by Maximilian Schwarzmüller [course site](https://www.udemy.com/course/the-complete-guide-to-angular-2/)
+Part of application have been created with course on Udemy led by Maximilian Schwarzmüller [course site](https://www.udemy.com/course/the-complete-guide-to-angular-2/).
