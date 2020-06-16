@@ -1,7 +1,28 @@
 # Menu Creator - Front
 ---
+Front part of simple menu creator aplication created by Angular and Bootstrap framework.
 
-This is the front part of the application to create a menu. Created for personal use and to develop skills in Angular and frontend technology like Bootstrap.
-At the moment, the application is not ready yet and some of the code will change, because I used a Google firebase backend so far. Some logic will be transferred to my second part of the application which will be responsible for the backend.The backend part of application you can find [here](https://github.com/JaroslawCzerwinski/Menu-Creator-Back).
+### Table of contents
+* [General Info](#general-info)
+* [Technologies](#technologies)
+* [Status](#status)
+* [Sources](#sources)
 
+---
+### General Info
 
+Application used for meal planning, created for own use and consolidation knowledge about Angular, Bootstrap. This project is the front part of [Menu Creator - Back](https://github.com/JaroslawCzerwinski/Menu-Creator-Back).
+
+---
+### Technologies
+Project is created with:
+- Angular 9.0.3
+- Bootstrap 3.4.1
+
+### Status
+---
+Project under development state. Some of the code will change to connect request with my backend aplication, so far for testing I used a Google Firebase.
+
+### Sources
+---
+Part of application have been created with course on Udemy led by Maximilian Schwarzmüller [course site](https://www.udemy.com/course/the-complete-guide-to-angular-2/)
